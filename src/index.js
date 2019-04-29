@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from '/Users/jamestucker/Coding-Projects/React/kiva_hero/src/components/App/App.js';
-import * as serviceWorker from './serviceWorker';
+import App from './../src/components/App/App';
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const client = new ApolloClient({
+    uri: "https://api.kivaws.org/graphql"
+});
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+
+
+
+
+//wraps app in provider so it can access store
+ReactDOM.render(
+    <ApolloProvider client={client}>
+        <App />
+    </ApolloProvider>,
+    document.getElementById("root")
+);

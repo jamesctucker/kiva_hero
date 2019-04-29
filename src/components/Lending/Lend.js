@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import LendingProfiles from './LendingProfiles';
+import Grid from '@material-ui/core/Grid';
+
 
 class Lend extends Component {
+
+
+
     render() {
+
+
         return (
             <div>
-                <h1>Lend</h1>
                 <LendingProfiles />
             </div>
-        )
+        );
     }
 }
+
 
 export default Lend;
