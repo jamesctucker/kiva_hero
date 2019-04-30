@@ -11,7 +11,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import Grid from '@material-ui/core/Grid';
+
+import { MdHourglassEmpty } from "react-icons/md";
 
 
 const kivaLoans = gql`
@@ -74,7 +77,7 @@ function LendingProfiles(props) {
                                                 key={value.id}
                                                 value={value}
                                             >
-                                                <Grid justify="center" container spacing={40}>
+                                                <Grid className="card-grid" justify="flex-start" container spacing={40}>
                                                     <Grid item lg={6}>
                                                         <img
                                                             className="card-image"
@@ -83,19 +86,21 @@ function LendingProfiles(props) {
                                                         />
                                                     </Grid>
                                                     <Grid item lg={6}>
-
-                                                        <Typography gutterBottom variant="h3" component="h2">
+                                                        <Typography gutterBottom variant="h4" component="h2">
                                                             {value.name}
                                                         </Typography>
-                                                        <Typography gutterBottom variant="h5">
+                                                        <Typography gutterBottom variant="h6">
                                                             ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
                                                         </Typography>
-                                                        <Typography gutterBottom variant="h5">
-                                                            {/* <Moment interval={1000} parse="hh:mm:ss" durationFromNow date={value.plannedExpirationDate} /> */}
-                                                            <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                        <Typography gutterBottom variant="h6">
+                                                            Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item lg={12}>
+                                                        <Typography variant="h5">
+                                                            Hassan's Story
+                                                        </Typography>
+                                                        <br />
                                                         <Typography gutterBottom variant="body1">
                                                             {value.description}
                                                         </Typography>
