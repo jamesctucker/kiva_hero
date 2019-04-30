@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import './Lending.css';
 
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,7 +19,7 @@ const kivaLoans = gql`
         id,
         plannedExpirationDate,
         image {
-          url
+            url(presetSize: original)
         },
         name,
         loanAmount,
@@ -27,9 +30,15 @@ const kivaLoans = gql`
 }
 `;
 
+const styles = {
+    card: {
+        maxWidth: 360,
+    }
+};
 
-function LendingProfiles() {
 
+function LendingProfiles(props) {
+    const { classes } = props;
     return (
         <div>
             <Query query={kivaLoans}>
@@ -42,12 +51,14 @@ function LendingProfiles() {
                             {
                                 data.lend.loans.values.map(value => (
                                     <Card
+                                        className="card"
                                         key={value.id}
                                         value={value}
                                     >
-                                        <CardMedia
-                                            image={value.image.url}
-                                            title="Contemplative Reptile"
+                                        <img
+                                            className="card-image"
+                                            src={value.image.url}
+                                            alt="Contemplative Reptile"
                                         />
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="h2">
@@ -68,6 +79,8 @@ function LendingProfiles() {
 
 
 
+LendingProfiles.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
-
-export default LendingProfiles;
+export default withStyles(styles)(LendingProfiles);

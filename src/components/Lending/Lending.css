@@ -1,0 +1,11 @@
+.card {
+    max-width: 640px;
+    min-height: 250px;
+    padding: 15px;
+}
+
+.card-image {
+    object-fit: contain;
+    min-height: 250px;
+    width: 100%;
+}
