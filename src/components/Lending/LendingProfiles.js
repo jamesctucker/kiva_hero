@@ -89,7 +89,7 @@ function LendingProfiles(props) {
                                                         </Typography>
                                                         <Typography gutterBottom variant="h5">
                                                             {/* <Moment interval={1000} parse="hh:mm:ss" durationFromNow date={value.plannedExpirationDate} /> */}
-                                                            <Countdown date={Date.now() + 10000} />,
+                                                            <Countdown date={value.plannedExpirationDate} />
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item lg={12}>
