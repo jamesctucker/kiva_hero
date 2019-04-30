@@ -10,8 +10,13 @@
     max-height: 340px;
     max-width: 340px;
     width: auto;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 .card-grid {
     padding: 60px;
+}
+
+.paper {
+    padding: 25px;
 }

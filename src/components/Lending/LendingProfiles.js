@@ -11,8 +11,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
 
 import { MdHourglassEmpty } from "react-icons/md";
 
@@ -72,10 +73,11 @@ function LendingProfiles(props) {
                                 {
                                     data.lend.loans.values.map(value => (
                                         <Grid item xl={6}>
-                                            <Card
+                                            <Paper
                                                 className="card"
                                                 key={value.id}
                                                 value={value}
+                                                elevation={3}
                                             >
                                                 <Grid className="card-grid" justify="flex-start" container spacing={40}>
                                                     <Grid item lg={6}>
@@ -86,27 +88,34 @@ function LendingProfiles(props) {
                                                         />
                                                     </Grid>
                                                     <Grid item lg={6}>
-                                                        <Typography gutterBottom variant="h4" component="h2">
+                                                        <Typography gutterBottom variant="display1">
                                                             {value.name}
                                                         </Typography>
-                                                        <Typography gutterBottom variant="h6">
-                                                            ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
-                                                        </Typography>
-                                                        <Typography gutterBottom variant="h6">
-                                                            Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
-                                                        </Typography>
+                                                        <Paper className="paper" elevation={6}>
+                                                            <Typography gutterBottom variant="h5">
+                                                                Loan Details
+                                                            </Typography>
+                                                            <Typography gutterBottom variant="subtitle1">
+                                                                Raised ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
+                                                            </Typography>
+                                                            <Typography gutterBottom variant="subtitle1">
+                                                                Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                            </Typography>
+                                                        </Paper>
                                                     </Grid>
                                                     <Grid item lg={12}>
-                                                        <Typography variant="h5">
-                                                            Hassan's Story
+                                                        <Paper className="paper" elevation={6}>
+                                                            <Typography variant="h5">
+                                                                {value.name}'s Story
                                                         </Typography>
-                                                        <br />
-                                                        <Typography gutterBottom variant="body1">
-                                                            {value.description}
-                                                        </Typography>
+                                                            <br />
+                                                            <Typography gutterBottom variant="body1">
+                                                                {value.description}
+                                                            </Typography>
+                                                        </Paper>
                                                     </Grid>
                                                 </Grid>
-                                            </Card>
+                                            </Paper>
                                         </Grid>
                                     ))}
                             </Grid>
