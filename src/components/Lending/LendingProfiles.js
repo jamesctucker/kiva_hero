@@ -5,8 +5,7 @@ import Countdown from 'react-countdown-now';
 import { Query } from "react-apollo";
 import './Lending.css';
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -35,13 +34,17 @@ const kivaLoans = gql`
 }
 `;
 
-
-
-const styles = {
-    card: {
-        maxWidth: 360,
+const renderer = ({ hours, minutes, seconds }) => {
+    if (hours <= 1) {
+        return <span>{hours}hr {minutes}mins {seconds}secs</span>
+    } else if (hours <= 1 && minutes <= 1) {
+        return <span>{hours}hr {minutes}min {seconds}secs</span>
+    } else {
+        return <span>{hours}hrs {minutes}mins {seconds}secs</span>
     }
-};
+}
+
+
 
 
 function LendingProfiles(props) {
@@ -89,7 +92,7 @@ function LendingProfiles(props) {
                                                         </Typography>
                                                         <Typography gutterBottom variant="h5">
                                                             {/* <Moment interval={1000} parse="hh:mm:ss" durationFromNow date={value.plannedExpirationDate} /> */}
-                                                            <Countdown date={value.plannedExpirationDate} />
+                                                            <Countdown date={value.plannedExpirationDate} renderer={renderer} />
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item lg={12}>
@@ -113,8 +116,6 @@ function LendingProfiles(props) {
 
 
 
-LendingProfiles.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(LendingProfiles);
+
+export default LendingProfiles;
