@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import gql from "graphql-tag";
 import Moment from 'react-moment';
+import Countdown from 'react-countdown-now';
 import { Query } from "react-apollo";
 import './Lending.css';
 
@@ -11,12 +12,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 
 const kivaLoans = gql`
     {
   lend {
-    loans(filters: {status: fundraising}, sortBy: expiringSoon) {
+    loans(filters: {status: fundraising}, sortBy: expiringSoon, limit: 50) {
       values {
         id,
         plannedExpirationDate,
@@ -55,36 +57,51 @@ function LendingProfiles(props) {
 
                     return (
                         <div>
-                            {
-                                data.lend.loans.values.map(value => (
-                                    <Card
-                                        className="card"
-                                        key={value.id}
-                                        value={value}
-                                    >
-                                        <img
-                                            className="card-image"
-                                            src={value.image.url}
-                                            alt="Contemplative Reptile"
-                                        />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h3" component="h2">
-                                                {value.name}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5">
-                                                ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5">
-                                                <Moment interval={1000} date={value.plannedExpirationDate} durationFromNow />
-                                            </Typography>
-                                            <Typography gutterBottom variant="body1">
-                                                {value.description}
-                                            </Typography>
+                            <Grid
+                                alignItems="center"
+                                direction="column"
+                                justify="center"
+                                container
+                                spacing={24}>
+                                {
+                                    data.lend.loans.values.map(value => (
+                                        <Grid item xl={6}>
+                                            <Card
+                                                className="card"
+                                                key={value.id}
+                                                value={value}
+                                            >
+                                                <Grid justify="center" container spacing={40}>
+                                                    <Grid item lg={6}>
+                                                        <img
+                                                            className="card-image"
+                                                            src={value.image.url}
+                                                            alt="Contemplative Reptile"
+                                                        />
+                                                    </Grid>
+                                                    <Grid item lg={6}>
 
-
-                                        </CardContent>
-                                    </Card>
-                                ))}
+                                                        <Typography gutterBottom variant="h3" component="h2">
+                                                            {value.name}
+                                                        </Typography>
+                                                        <Typography gutterBottom variant="h5">
+                                                            ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
+                                                        </Typography>
+                                                        <Typography gutterBottom variant="h5">
+                                                            {/* <Moment interval={1000} parse="hh:mm:ss" durationFromNow date={value.plannedExpirationDate} /> */}
+                                                            <Countdown date={Date.now() + 10000} />,
+                                                        </Typography>
+                                                    </Grid>
+                                                    <Grid item lg={12}>
+                                                        <Typography gutterBottom variant="body1">
+                                                            {value.description}
+                                                        </Typography>
+                                                    </Grid>
+                                                </Grid>
+                                            </Card>
+                                        </Grid>
+                                    ))}
+                            </Grid>
                         </div>
                     );
                 }}
