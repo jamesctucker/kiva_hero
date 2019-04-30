@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 const kivaLoans = gql`
     {
   lend {
-    loans(filters: {status: fundraising}, sortBy: newest) {
+    loans(filters: {status: fundraising}, sortBy: expiringSoon) {
       values {
         id,
         plannedExpirationDate,
@@ -22,13 +22,16 @@ const kivaLoans = gql`
             url(presetSize: original)
         },
         name,
+        loanFundraisingInfo { fundedAmount },
         loanAmount,
-        description
+        description,
       }
     }
   }
 }
 `;
+
+
 
 const styles = {
     card: {
@@ -39,6 +42,8 @@ const styles = {
 
 function LendingProfiles(props) {
     const { classes } = props;
+
+
     return (
         <div>
             <Query query={kivaLoans}>
@@ -61,9 +66,16 @@ function LendingProfiles(props) {
                                             alt="Contemplative Reptile"
                                         />
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
+                                            <Typography gutterBottom variant="h3" component="h2">
                                                 {value.name}
                                             </Typography>
+                                            <Typography gutterBottom variant="h5">
+                                                ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
+                                            </Typography>
+                                            <Typography gutterBottom variant="body1">
+                                                {value.description}
+                                            </Typography>
+
 
                                         </CardContent>
                                     </Card>
