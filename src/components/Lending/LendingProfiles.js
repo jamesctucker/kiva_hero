@@ -77,7 +77,7 @@ function LendingProfiles(props) {
                                                 className="card"
                                                 key={value.id}
                                                 value={value}
-                                                elevation={3}
+                                                elevation={8}
                                             >
                                                 <Grid className="card-grid" justify="flex-start" container spacing={40}>
                                                     <Grid item lg={6}>

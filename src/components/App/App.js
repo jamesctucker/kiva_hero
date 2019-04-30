@@ -12,15 +12,15 @@ import Lend from './../Lending/Lend';
 function App() {
   return (
     <div>
-      <Router>
-        <Nav />
-        <div>
+      <header>
+        <Router>
+          <Nav />
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/lend" component={Lend} />
-        </div>
-      </Router>
-    </div>
+        </Router>
+      </header>
+    </div >
   );
 }
 
