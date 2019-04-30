@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import gql from "graphql-tag";
+import Moment from 'react-moment';
 import { Query } from "react-apollo";
 import './Lending.css';
 
@@ -10,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+
 
 const kivaLoans = gql`
     {
@@ -73,7 +75,7 @@ function LendingProfiles(props) {
                                                 ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
                                             </Typography>
                                             <Typography gutterBottom variant="h5">
-                                                {value.plannedExpirationDate}
+                                                <Moment interval={1000} date={value.plannedExpirationDate} durationFromNow />
                                             </Typography>
                                             <Typography gutterBottom variant="body1">
                                                 {value.description}
