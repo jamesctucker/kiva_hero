@@ -5,7 +5,7 @@ import Countdown from 'react-countdown-now';
 import { Query } from "react-apollo";
 import './Lending.css';
 
-
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,13 +15,13 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 
-import { MdHourglassEmpty } from "react-icons/md";
+
 
 
 const kivaLoans = gql`
     {
   lend {
-    loans(filters: {status: fundraising}, sortBy: expiringSoon, limit: 50) {
+    loans(filters: {status: fundraising}, sortBy: expiringSoon, limit: 20) {
       values {
         id,
         plannedExpirationDate,
@@ -51,81 +51,89 @@ const renderer = ({ hours, minutes, seconds }) => {
 
 
 
-function LendingProfiles(props) {
-    const { classes } = props;
+
+class LendingProfiles extends Component {
+    render() {
 
 
-    return (
-        <div>
-            <Query query={kivaLoans}>
-                {({ data, loading, error }) => {
-                    if (loading) return <div><p>Loading...</p></div>;
-                    if (error) return <p>ERROR</p>;
+        return (
+            <div>
+                <Query query={kivaLoans}>
+                    {({ data, loading, error }) => {
+                        if (loading) return <div><p>Loading...</p></div>;
+                        if (error) return <p>ERROR</p>;
 
-                    return (
-                        <div>
-                            <Grid
-                                alignItems="center"
-                                direction="column"
-                                justify="center"
-                                container
-                                spacing={24}>
-                                {
-                                    data.lend.loans.values.map(value => (
-                                        <Grid item xl={6}>
-                                            <Paper
-                                                className="card"
-                                                key={value.id}
-                                                value={value}
-                                                elevation={8}
-                                            >
-                                                <Grid className="card-grid" justify="flex-start" container spacing={40}>
-                                                    <Grid item lg={6}>
-                                                        <img
-                                                            className="card-image"
-                                                            src={value.image.url}
-                                                            alt="Contemplative Reptile"
-                                                        />
-                                                    </Grid>
-                                                    <Grid item lg={6}>
-                                                        <Typography gutterBottom variant="display1">
-                                                            {value.name}
-                                                        </Typography>
-                                                        <Paper className="paper" elevation={6}>
-                                                            <Typography gutterBottom variant="h5">
-                                                                Loan Details
-                                                            </Typography>
-                                                            <Typography gutterBottom variant="subtitle1">
-                                                                Raised ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
-                                                            </Typography>
-                                                            <Typography gutterBottom variant="subtitle1">
-                                                                Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
-                                                            </Typography>
-                                                        </Paper>
-                                                    </Grid>
-                                                    <Grid item lg={12}>
-                                                        <Paper className="paper" elevation={6}>
-                                                            <Typography variant="h5">
-                                                                {value.name}'s Story
-                                                        </Typography>
-                                                            <br />
-                                                            <Typography gutterBottom variant="body1">
-                                                                {value.description}
-                                                            </Typography>
-                                                        </Paper>
-                                                    </Grid>
-                                                </Grid>
-                                            </Paper>
+                        return (
+                            <div>
+                                <Grid
+                                    alignItems="center"
+                                    direction="column"
+                                    justify="center"
+                                    container
+                                    spacing={24}>
+                                    <Paper className="card-button">
+                                        <Grid item sm={12}>
+                                            <Button variant="contained">Random</Button>
                                         </Grid>
-                                    ))}
-                            </Grid>
-                        </div>
-                    );
-                }}
-            </Query>
+                                    </Paper>
+                                    {
+                                        data.lend.loans.values.map(value => (
+                                            <Grid item xl={6}>
+                                                <Paper
+                                                    className="card"
+                                                    key={value.id}
+                                                    value={value}
+                                                    elevation={8}
+                                                >
+                                                    <Grid className="card-grid" justify="flex-start" container spacing={40}>
+                                                        <Grid item lg={6}>
+                                                            <img
+                                                                className="card-image"
+                                                                src={value.image.url}
+                                                                alt="Contemplative Reptile"
+                                                            />
+                                                        </Grid>
+                                                        <Grid item lg={6}>
+                                                            <Typography gutterBottom variant="display1">
+                                                                {value.name}
+                                                            </Typography>
+                                                            <Paper className="paper" elevation={6}>
+                                                                <Typography gutterBottom variant="h5">
+                                                                    Loan Details
+                                                            </Typography>
+                                                                <Typography gutterBottom variant="subtitle1">
+                                                                    Raised ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
+                                                                </Typography>
+                                                                <Typography gutterBottom variant="subtitle1">
+                                                                    Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                                </Typography>
+                                                            </Paper>
+                                                        </Grid>
+                                                        <Grid item lg={12}>
+                                                            <Paper className="paper" elevation={6}>
+                                                                <Typography variant="h5">
+                                                                    {value.name}'s Story
+                                                        </Typography>
+                                                                <br />
+                                                                <Typography gutterBottom variant="body1">
+                                                                    {value.description}
+                                                                </Typography>
+                                                            </Paper>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Paper>
+                                            </Grid>
+                                        ))}
 
-        </div>
-    );
+                                </Grid>
+                            </div>
+                        );
+                    }}
+                </Query>
+
+            </div>
+        );
+    }
 }
 
 
