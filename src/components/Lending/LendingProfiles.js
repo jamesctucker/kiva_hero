@@ -72,6 +72,9 @@ function LendingProfiles(props) {
                                             <Typography gutterBottom variant="h5">
                                                 ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
                                             </Typography>
+                                            <Typography gutterBottom variant="h5">
+                                                {value.plannedExpirationDate}
+                                            </Typography>
                                             <Typography gutterBottom variant="body1">
                                                 {value.description}
                                             </Typography>
