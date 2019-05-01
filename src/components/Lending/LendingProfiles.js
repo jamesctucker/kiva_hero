@@ -10,19 +10,18 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
 
 
 const kivaLoans = gql`
-    query ($sortBy: LoanSearchSortByEnum) {
+    query ($sortBy: LoanSearchSortByEnum, $limit: Int) {
   lend {
-    loans(filters: {status: fundraising}, sortBy: $sortBy, limit: 50) {
+    loans(filters: {status: fundraising}, sortBy: $sortBy, limit: $limit) {
       values {
         id
         plannedExpirationDate
@@ -59,7 +58,8 @@ class LendingProfiles extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            sort: 'random'
+            sort: 'random',
+            limitResults: 10
         }
     }
 
@@ -70,10 +70,10 @@ class LendingProfiles extends Component {
 
 
     render() {
-        const { sort } = this.state;
+        const { sort, limitResults } = this.state;
         return (
             <div>
-                <Query query={kivaLoans} variables={{ sortBy: sort }}>
+                <Query query={kivaLoans} variables={{ sortBy: sort, limit: limitResults }}>
                     {({ data, loading, error }) => {
                         if (loading) return <div><p>Loading...</p></div>;
                         if (error) return <p>ERROR</p>;
@@ -87,21 +87,36 @@ class LendingProfiles extends Component {
                                     container
                                     spacing={24}>
                                     <Paper className="card-button">
-                                        <Grid item sm={12}>
-                                            <FormControl variant="filled" className="select-component">
-                                                <InputLabel htmlFor="filled-age-simple">Sort</InputLabel>
+                                        <Grid item md={12}>
+                                            <FormControl className="form-control">
                                                 <Select
+                                                    className="dropdown"
+                                                    label="Sort By"
                                                     value={this.state.sort}
                                                     onChange={this.handleChange}
-                                                    input={<FilledInput name="sort" id="filled-sort-simple" />}
+                                                    input={<Input name="sort" id="filled-sort-simple" />}
                                                 >
-                                                    <MenuItem value="">
-                                                        <em>None</em>
-                                                    </MenuItem>
-                                                    <MenuItem value={"random"}>Random</MenuItem>
-                                                    <MenuItem value={"newest"}>Newest</MenuItem>
+                                                    <MenuItem value={"amountLeft"}>Amount Left</MenuItem>
                                                     <MenuItem value={"expiringSoon"}>Expiring</MenuItem>
+                                                    <MenuItem value={"newest"}>Newest</MenuItem>
+                                                    <MenuItem value={"random"}>Random</MenuItem>
                                                 </Select>
+                                                <FormHelperText className="dropdown">Sort By</FormHelperText>
+                                            </FormControl>
+                                        </Grid>
+                                        <Grid item md={12}>
+                                            <FormControl className="form-control">
+                                                <Select
+                                                    className="dropdown"
+                                                    value={this.state.limitResults}
+                                                    onChange={this.handleChange}
+                                                    input={<Input name="limitResults" id="filled-limit-simple" />}
+                                                >
+                                                    <MenuItem value={1}>1</MenuItem>
+                                                    <MenuItem value={10}>10</MenuItem>
+                                                    <MenuItem value={20}>20</MenuItem>
+                                                </Select>
+                                                <FormHelperText className="dropdown">Limit Results</FormHelperText>
                                             </FormControl>
                                         </Grid>
                                     </Paper>
