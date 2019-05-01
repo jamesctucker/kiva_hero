@@ -17,26 +17,34 @@ import Paper from '@material-ui/core/Paper';
 
 
 
-
 const kivaLoans = gql`
-    {
+    query ($sortBy: LoanSearchSortByEnum) {
   lend {
-    loans(filters: {status: fundraising}, sortBy: expiringSoon, limit: 20) {
+    loans(filters: {status: fundraising}, sortBy: $sortBy, limit: 50) {
       values {
-        id,
-        plannedExpirationDate,
+        id
+        plannedExpirationDate
         image {
-            url(presetSize: original)
-        },
-        name,
-        loanFundraisingInfo { fundedAmount },
-        loanAmount,
-        description,
+          url(customSize: "s300")
+        }
+        name
+        loanFundraisingInfo {
+          fundedAmount
+        }
+        loanAmount
+        description
+        loanAmount
       }
     }
   }
-}
-`;
+}`;
+
+
+
+
+
+
+
 
 const renderer = ({ hours, minutes, seconds }) => {
     if (hours <= 1) {
@@ -53,12 +61,18 @@ const renderer = ({ hours, minutes, seconds }) => {
 
 
 class LendingProfiles extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            search: "random"
+        }
+    }
+
     render() {
-
-
+        const { search } = this.state;
         return (
             <div>
-                <Query query={kivaLoans}>
+                <Query query={kivaLoans} variables={{ sortBy: search }}>
                     {({ data, loading, error }) => {
                         if (loading) return <div><p>Loading...</p></div>;
                         if (error) return <p>ERROR</p>;
@@ -131,7 +145,7 @@ class LendingProfiles extends Component {
                     }}
                 </Query>
 
-            </div>
+            </div >
         );
     }
 }
