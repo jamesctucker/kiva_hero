@@ -6,13 +6,15 @@ import { Query } from "react-apollo";
 import './Lending.css';
 
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Select from '@material-ui/core/Select';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 
@@ -25,7 +27,7 @@ const kivaLoans = gql`
         id
         plannedExpirationDate
         image {
-          url(customSize: "s300")
+          url(presetSize: original)
         }
         name
         loanFundraisingInfo {
@@ -41,11 +43,6 @@ const kivaLoans = gql`
 
 
 
-
-
-
-
-
 const renderer = ({ hours, minutes, seconds }) => {
     if (hours <= 1) {
         return <span>{hours}hr {minutes}mins {seconds}secs</span>
@@ -58,21 +55,25 @@ const renderer = ({ hours, minutes, seconds }) => {
 
 
 
-
-
 class LendingProfiles extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: "random"
+            sort: 'random'
         }
     }
 
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
+
+
+
     render() {
-        const { search } = this.state;
+        const { sort } = this.state;
         return (
             <div>
-                <Query query={kivaLoans} variables={{ sortBy: search }}>
+                <Query query={kivaLoans} variables={{ sortBy: sort }}>
                     {({ data, loading, error }) => {
                         if (loading) return <div><p>Loading...</p></div>;
                         if (error) return <p>ERROR</p>;
@@ -87,7 +88,21 @@ class LendingProfiles extends Component {
                                     spacing={24}>
                                     <Paper className="card-button">
                                         <Grid item sm={12}>
-                                            <Button variant="contained">Random</Button>
+                                            <FormControl variant="filled" className="select-component">
+                                                <InputLabel htmlFor="filled-age-simple">Sort</InputLabel>
+                                                <Select
+                                                    value={this.state.sort}
+                                                    onChange={this.handleChange}
+                                                    input={<FilledInput name="sort" id="filled-sort-simple" />}
+                                                >
+                                                    <MenuItem value="">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={"random"}>Random</MenuItem>
+                                                    <MenuItem value={"newest"}>Newest</MenuItem>
+                                                    <MenuItem value={"expiringSoon"}>Expiring</MenuItem>
+                                                </Select>
+                                            </FormControl>
                                         </Grid>
                                     </Paper>
                                     {
@@ -99,18 +114,19 @@ class LendingProfiles extends Component {
                                                     value={value}
                                                     elevation={8}
                                                 >
-                                                    <Grid className="card-grid" justify="flex-start" container spacing={40}>
+                                                    <Grid className="card-grid" justify="space-evenly" container spacing={40}>
                                                         <Grid item lg={6}>
                                                             <img
                                                                 className="card-image"
                                                                 src={value.image.url}
-                                                                alt="Contemplative Reptile"
+                                                                alt={value.name}
                                                             />
                                                         </Grid>
                                                         <Grid item lg={6}>
                                                             <Typography gutterBottom variant="display1">
                                                                 {value.name}
                                                             </Typography>
+                                                            <br />
                                                             <Paper className="paper" elevation={6}>
                                                                 <Typography gutterBottom variant="h5">
                                                                     Loan Details
