@@ -1,8 +1,8 @@
 .card {
-    max-width: 800px;
+    max-width: 750px;
     min-height: 120px;
     display: inline-flex;
-    margin-top: 3em;
+    margin-top: 7em;
 }
 
 .card-image {
@@ -10,25 +10,30 @@
     min-height: 200px;
     min-width: 200px;
     max-height: 340px;
-    max-width: 340px;
+    max-width: 300px;
     width: auto;
     box-shadow: 2px 3px 2px #888888;
 }
 
 .card-button {
-    max-width: 800px;
-    padding: 20px;
+    max-width: 250px;
+    padding: 15px;
     position: fixed;
-    margin: 25px;
+    margin-top: 7em;
 }
 
 .card-grid {
     padding: 50px;
 }
 
+/* .grid-main {
+    margin-left: relative;
+} */
+
 .paper {
     padding: 25px;
 }
+
 
 /* .random-btn {
     margin-top: 7em;
