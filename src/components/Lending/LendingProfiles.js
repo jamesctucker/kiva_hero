@@ -81,13 +81,13 @@ class LendingProfiles extends Component {
                         return (
                             <div>
                                 <Grid
-                                    alignItems="center"
-                                    direction="column"
-                                    justify="center"
+                                    alignItems="flex-start"
+                                    direction="row"
+                                    justify="space-center"
                                     container
                                     spacing={24}>
-                                    <Paper className="card-button">
-                                        <Grid item md={12}>
+                                    <Grid item xs={4}>
+                                        <Paper className="card-button" elevation={3}>
                                             <FormControl className="form-control">
                                                 <Select
                                                     className="dropdown"
@@ -103,8 +103,6 @@ class LendingProfiles extends Component {
                                                 </Select>
                                                 <FormHelperText className="dropdown">Sort By</FormHelperText>
                                             </FormControl>
-                                        </Grid>
-                                        <Grid item md={12}>
                                             <FormControl className="form-control">
                                                 <Select
                                                     className="dropdown"
@@ -118,16 +116,17 @@ class LendingProfiles extends Component {
                                                 </Select>
                                                 <FormHelperText className="dropdown">Limit Results</FormHelperText>
                                             </FormControl>
-                                        </Grid>
-                                    </Paper>
-                                    {
-                                        data.lend.loans.values.map(value => (
-                                            <Grid item xl={6}>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item xs={8}>
+
+                                        {
+                                            data.lend.loans.values.map(value => (
                                                 <Paper
                                                     className="card"
                                                     key={value.id}
                                                     value={value}
-                                                    elevation={8}
+                                                    elevation={3}
                                                 >
                                                     <Grid className="card-grid" justify="space-evenly" container spacing={40}>
                                                         <Grid item lg={6}>
@@ -142,7 +141,7 @@ class LendingProfiles extends Component {
                                                                 {value.name}
                                                             </Typography>
                                                             <br />
-                                                            <Paper className="paper" elevation={6}>
+                                                            <Paper className="paper" elevation={2}>
                                                                 <Typography gutterBottom variant="h5">
                                                                     Loan Details
                                                             </Typography>
@@ -155,7 +154,7 @@ class LendingProfiles extends Component {
                                                             </Paper>
                                                         </Grid>
                                                         <Grid item lg={12}>
-                                                            <Paper className="paper" elevation={6}>
+                                                            <Paper className="paper" elevation={2}>
                                                                 <Typography variant="h5">
                                                                     {value.name}'s Story
                                                         </Typography>
@@ -167,8 +166,8 @@ class LendingProfiles extends Component {
                                                         </Grid>
                                                     </Grid>
                                                 </Paper>
-                                            </Grid>
-                                        ))}
+                                            ))}
+                                    </Grid>
 
                                 </Grid>
                             </div>

@@ -6,20 +6,20 @@
 }
 
 .card-image {
-    object-fit: scale-down;
-    min-height: 120px;
+    object-fit: cover;
+    min-height: 200px;
+    min-width: 200px;
     max-height: 340px;
     max-width: 340px;
     width: auto;
-    box-shadow: 5px 10px 8px #888888;
+    box-shadow: 2px 3px 2px #888888;
 }
 
 .card-button {
-    margin-top: 8em;
     max-width: 800px;
-    min-height: 75px;
-    display: flex;
     padding: 20px;
+    position: fixed;
+    margin: 25px;
 }
 
 .card-grid {
@@ -43,5 +43,10 @@
 
 /* .form-control {
     padding: 10px;
+} */
+
+/* .side-filter {
+    position: sticky;
+    min-height: 800px;
 } */
 
