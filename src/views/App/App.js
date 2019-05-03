@@ -4,7 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 import './App.css';
-import Nav from '../Nav/Nav';
+import Nav from '/Users/jamestucker/Coding-Projects/React/kiva_hero/src/components/Nav/Nav.js'
 import About from './../About/About';
 import LendingProfiles from './../Lending/LendingProfiles';
 
@@ -16,6 +16,11 @@ function App() {
         <Route exact path="/" component={LendingProfiles} />
         <Route exact path="/about" component={About} />
       </Router>
+      <div align="center">
+        <footer>
+          ©2019 KivaHero is not supported by Kiva.org.
+      </footer>
+      </div>
     </div >
   );
 }
