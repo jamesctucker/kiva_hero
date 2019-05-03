@@ -1,6 +1,6 @@
 .nav-title {
-    font-size: 36px;
-    font-weight: 400;
+    font-size: 24px;
+    font-weight: 700;
     display: inline-block;
     color: #f2f2f2;
     margin: 20px;
@@ -10,24 +10,21 @@
 
 .nav {
   background-color: #4FAF4E;
-  margin-left: -.5em;
-  margin-right: -.5em;
-  position: fixed;
   width: 100%;
-  height: 5.5em;
-  box-shadow: 0px 2px 3px #888888;
-
+  height: 75px;
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .nav-link {
-  float: left;
+  float: right;
   color: #f2f2f2;
   background-color: #4FAF4E;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 10px;
   margin: 20px;
-  text-decoration: none;
   font-size: 18px;
   font-family: 'Oxygen', sans-serif;
 

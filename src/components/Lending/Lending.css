@@ -15,15 +15,18 @@
     box-shadow: 2px 3px 2px #888888;
 }
 
-.card-button {
-    max-width: 250px;
-    padding: 15px;
-    position: fixed;
+#main-paper {
+    background-color: lightslategray;
+}
+
+.paper-filter {
+    min-width: 250px;
+    padding: 20px;
     margin-top: 7em;
 }
 
 .card-grid {
-    padding: 50px;
+    padding: 25px;
 }
 
 /* .grid-main {
@@ -34,6 +37,10 @@
     padding: 25px;
 }
 
+.loan-paper {
+    padding: 15px;
+}
+
 
 /* .random-btn {
     margin-top: 7em;
@@ -41,13 +48,16 @@
 
 
 .dropdown {
-    min-width: 150px;
+    min-width: 200px;
     margin-left: 10px;
     margin-right: 10px;
+    padding: 10px;
+    margin: 10px;
+    height: 20px;
 }
 
 /* .form-control {
-    padding: 10px;
+    margin: 10px;
 } */
 
 /* .side-filter {

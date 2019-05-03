@@ -10,7 +10,7 @@ class Nav extends Component {
                     <h2 className="nav-title">Kiva Hero</h2>
                 </Link>
                 <div className="nav-right">
-                    <Link to="/lend">
+                    <Link to="/">
                         <h2 className="nav-link">Lend</h2>
                     </Link>
                     <Link to="/about">

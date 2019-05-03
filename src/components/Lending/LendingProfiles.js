@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import gql from "graphql-tag";
-import Moment from 'react-moment';
 import Countdown from 'react-countdown-now';
 import { Query } from "react-apollo";
 import './Lending.css';
@@ -12,8 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
@@ -31,7 +29,7 @@ const kivaLoans = gql`
         id
         plannedExpirationDate
         image {
-          url(customSize: "s500")
+          url(customSize: "s900")
         }
         name
         loanFundraisingInfo {
@@ -63,7 +61,7 @@ class LendingProfiles extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            sort: 'random',
+            sort: 'expiringSoon',
             limitResults: 10
         }
     }
@@ -85,40 +83,41 @@ class LendingProfiles extends Component {
                     return (
                         <Grid
                             direction="row"
+                            justify="space-evenly"
                             container
-                            spacing={0}
-                            className="grid-main">
-                            <Grid item xs={4}>
-                                <Card align="center" className="card-button">
-                                    <FormControl className="form-control">
+                            spacing={24}
+                        >
+                            <Grid item xs={2}>
+                                <Paper align="center" className="paper-filter">
+                                    <Typography variant="h6">
+                                        Sort:
+                                    </Typography>
+                                    <FormControl variant="outlined" className="form-control">
                                         <Select
                                             className="dropdown"
-                                            label="Sort By"
                                             value={this.state.sort}
                                             onChange={this.handleChange}
-                                            input={<Input name="sort" id="filled-sort-simple" />}
+                                            input={<OutlinedInput name="sort" id="outlined-sort-simple" />}
                                         >
                                             <MenuItem value={"amountLeft"}>Amount Left</MenuItem>
-                                            <MenuItem value={"expiringSoon"}>Expiring</MenuItem>
+                                            <MenuItem value={"expiringSoon"}>Expiring Soonest</MenuItem>
                                             <MenuItem value={"newest"}>Newest</MenuItem>
                                             <MenuItem value={"random"}>Random</MenuItem>
                                         </Select>
-                                        <FormHelperText className="dropdown">Sort By</FormHelperText>
                                     </FormControl>
-                                    <FormControl className="form-control">
+                                    <FormControl variant="outlined" className="form-control">
                                         <Select
                                             className="dropdown"
                                             value={this.state.limitResults}
                                             onChange={this.handleChange}
-                                            input={<Input name="limitResults" id="filled-limit-simple" />}
+                                            input={<OutlinedInput name="limitResults" id="outlined-limit-simple" />}
                                         >
                                             <MenuItem value={1}>1</MenuItem>
                                             <MenuItem value={10}>10</MenuItem>
                                             <MenuItem value={20}>20</MenuItem>
                                         </Select>
-                                        <FormHelperText className="dropdown">Limit Results</FormHelperText>
                                     </FormControl>
-                                </Card>
+                                </Paper>
                             </Grid>
                             <Grid item xs={8}>
 
@@ -126,6 +125,7 @@ class LendingProfiles extends Component {
                                     data.lend.loans.values.map(value => (
                                         <Paper
                                             className="card"
+                                            id="main-paper"
                                             key={value.id}
                                             value={value}
                                             elevation={3}
@@ -139,22 +139,25 @@ class LendingProfiles extends Component {
                                                     />
                                                 </Grid>
                                                 <Grid item lg={6}>
-                                                    <Typography gutterBottom variant="display1">
-                                                        {value.name}
-                                                    </Typography>
-                                                    <br />
-                                                    <Typography gutterBottom variant="body2">
-                                                        Loan Details
+                                                    <Paper className="loan-paper" elevation={2}>
+                                                        <Typography gutterBottom variant="display1">
+                                                            {value.name}
+                                                        </Typography>
+                                                        <br />
+                                                        <Typography gutterBottom variant="body2">
+                                                            Loan Details
                                                             </Typography>
-                                                    <Typography gutterBottom variant="body1">
-                                                        Raised ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
-                                                    </Typography>
-                                                    <Typography color="error" gutterBottom variant="body1">
-                                                        Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
-                                                    </Typography>
-                                                    <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
-                                                        <Button variant="contained" color="primary">Lend Now</Button>
-                                                    </Link>
+                                                        <Typography gutterBottom variant="body1">
+                                                            Raised ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
+                                                        </Typography>
+                                                        <Typography color="error" gutterBottom variant="body1">
+                                                            Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                        </Typography>
+                                                        <br />
+                                                        <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
+                                                            <Button variant="contained" color="primary">Lend Now</Button>
+                                                        </Link>
+                                                    </Paper>
                                                 </Grid>
                                                 <Grid item lg={12}>
                                                     <Paper className="paper" elevation={2}>
