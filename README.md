@@ -3,8 +3,8 @@
 This is a work-in-progress!
 
 ### Built With
-*React
-*Node
-*GraphQL
+- React
+- Node
+- GraphQL
 
 ![](kivahero.gif)
