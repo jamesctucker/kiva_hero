@@ -9,7 +9,7 @@
 }
 
 .nav {
-  background-color: #4FAF4E;
+  background-color: #256F5C;
   width: 100%;
   height: 75px;
   position: absolute;
@@ -22,7 +22,7 @@
 .nav-link {
   float: right;
   color: #f2f2f2;
-  background-color: #4FAF4E;
+  background-color: #256F5C;
   padding: 10px;
   margin: 20px;
   font-size: 18px;
@@ -37,7 +37,7 @@
 }
 
 .nav-link:hover {
-  background-color: #4FAF4E;
+  background-color: #256F5C;
 }
 
 .nav-right {

@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
@@ -89,10 +90,10 @@ class LendingProfiles extends Component {
                         >
                             <Grid item xs={2}>
                                 <Paper align="center" className="paper-filter">
-                                    <Typography variant="h6">
-                                        Sort:
-                                    </Typography>
                                     <FormControl variant="outlined" className="form-control">
+                                        <InputLabel>
+                                            Sort By
+                                        </InputLabel>
                                         <Select
                                             className="dropdown"
                                             value={this.state.sort}
@@ -106,6 +107,9 @@ class LendingProfiles extends Component {
                                         </Select>
                                     </FormControl>
                                     <FormControl variant="outlined" className="form-control">
+                                        <InputLabel>
+                                            Results
+                                        </InputLabel>
                                         <Select
                                             className="dropdown"
                                             value={this.state.limitResults}
@@ -120,7 +124,9 @@ class LendingProfiles extends Component {
                                 </Paper>
                             </Grid>
                             <Grid item xs={8}>
-
+                                <Typography id="intro" gutterBottom variant="display1">
+                                    Fund an expiring loan, save an entrepreneur's dream.
+                                </Typography>
                                 {
                                     data.lend.loans.values.map(value => (
                                         <Paper
@@ -155,7 +161,7 @@ class LendingProfiles extends Component {
                                                         </Typography>
                                                         <br />
                                                         <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
-                                                            <Button variant="contained" color="primary">Lend Now</Button>
+                                                            <Button variant="contained" id="lend-btn">Lend Now</Button>
                                                         </Link>
                                                     </Paper>
                                                 </Grid>
