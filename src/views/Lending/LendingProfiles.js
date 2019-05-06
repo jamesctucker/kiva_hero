@@ -358,13 +358,11 @@ const countries = [
 
 
 const renderer = ({ hours, minutes, seconds }) => {
-    if (hours <= 1) {
-        return <span>{hours}hr {minutes}mins {seconds}secs</span>
-    } else if (hours <= 1 && minutes <= 1) {
-        return <span>{hours}hr {minutes}min {seconds}secs</span>
-    } else {
-        return <span>{hours}hrs {minutes}mins {seconds}secs</span>
-    }
+    return <div className="timer-div">
+        <span className="timer-hours">{hours} hr</span>
+        <span className="timer-minutes">{minutes} min</span>
+        <span className="timer-seconds">{seconds} sec</span>
+    </div>
 }
 
 
@@ -481,10 +479,10 @@ class LendingProfiles extends Component {
                                                         </Typography>
                                                         <br />
                                                         <Typography gutterBottom variant="body1">
-                                                            Raised ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
+                                                            Raised <span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span> of <span>${value.loanAmount}</span>
                                                         </Typography>
-                                                        <Typography color="error" gutterBottom variant="body1">
-                                                            Expires in <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                        <Typography gutterBottom variant="body1">
+                                                            Expires in: <Countdown date={value.plannedExpirationDate} renderer={renderer} />
                                                         </Typography>
                                                         <br />
                                                         <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
