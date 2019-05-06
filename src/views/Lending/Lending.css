@@ -35,6 +35,11 @@
 #lend-btn {
     background-color: #4C688C;
     color: white;
+    margin: 1em;
+}
+
+#loan-name {
+    margin: .5em;
 }
 
 /* .grid-main {
@@ -46,7 +51,7 @@
 }
 
 .loan-paper {
-    padding: 15px;
+    padding: 10px;
 }
 
 
@@ -68,7 +73,8 @@
     font-size: 20px;
     background-color: lightgray;
     padding: 5px;
-    margin: 1em;
+    margin: .3em;
+    font-family: 'Share Tech Mono', sans-serif;
 }
 
 .timer-hours {
@@ -77,6 +83,8 @@
     margin: .3em;
     color: white;
     font-size: 20px;
+    font-family: 'Share Tech Mono', sans-serif;
+
 }
 
 .timer-minutes {
@@ -85,6 +93,8 @@
     margin: .3em;
     color: white;
     font-size: 20px;
+    font-family: 'Share Tech Mono', sans-serif;
+
 
 }
 
@@ -96,6 +106,25 @@
     font-size: 20px;
     font-family: 'Share Tech Mono', sans-serif;
 
+}
+
+.timer-header {
+    color: black;
+    font-family: 'Monteserrat', sans-serif;
+    font-size: 1em;
+}
+
+.timer-intro {
+    font-family: 'Monteserrat', sans-serif;
+    font-size: 1em;
+}
+
+.loan-amount-div {
+    margin: 1em;
+}
+
+.loan-countdown-div {
+    margin: 1em;
 }
 
 /* .timer-div {

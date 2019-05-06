@@ -359,9 +359,10 @@ const countries = [
 
 const renderer = ({ hours, minutes, seconds }) => {
     return <div className="timer-div">
-        <span className="timer-hours">{hours} hr</span>
-        <span className="timer-minutes">{minutes} min</span>
-        <span className="timer-seconds">{seconds} sec</span>
+        <span className="timer-intro">Expires in</span>
+        <span className="timer-hours">{hours}</span><span className="timer-header">hr</span>
+        <span className="timer-minutes">{minutes}</span><span className="timer-header">min</span>
+        <span className="timer-seconds">{seconds}</span><span className="timer-header">sec</span>
     </div>
 }
 
@@ -474,17 +475,18 @@ class LendingProfiles extends Component {
                                                 </Grid>
                                                 <Grid item lg={6}>
                                                     <Paper className="loan-paper" elevation={2}>
-                                                        <Typography gutterBottom variant="display1">
+                                                        <Typography id="loan-name" gutterBottom variant="display1">
                                                             {value.name}
                                                         </Typography>
-                                                        <br />
-                                                        <Typography gutterBottom variant="body1">
-                                                            Raised <span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span> of <span>${value.loanAmount}</span>
-                                                        </Typography>
-                                                        <Typography gutterBottom variant="body1">
-                                                            Expires in: <Countdown date={value.plannedExpirationDate} renderer={renderer} />
-                                                        </Typography>
-                                                        <br />
+                                                        <Divider />
+                                                        <div className="loan-amount-div">
+                                                            <span className="timer-header">Raised</span><span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span><span className="timer-header">of ${value.loanAmount}</span>
+                                                        </div>
+                                                        <Divider />
+                                                        <div className="loan-countdown-div">
+                                                            <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                        </div>
+                                                        <Divider />
                                                         <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
                                                             <Button variant="contained" id="lend-btn">Lend Now</Button>
                                                         </Link>
