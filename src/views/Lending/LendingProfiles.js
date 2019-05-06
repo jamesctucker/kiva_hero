@@ -44,6 +44,12 @@ const kivaLoans = gql`
   }
 }`;
 
+const country = [
+    {
+        name: h, value: j,
+    }
+];
+
 
 
 const renderer = ({ hours, minutes, seconds }) => {
@@ -150,9 +156,6 @@ class LendingProfiles extends Component {
                                                             {value.name}
                                                         </Typography>
                                                         <br />
-                                                        <Typography gutterBottom variant="body2">
-                                                            Loan Details
-                                                            </Typography>
                                                         <Typography gutterBottom variant="body1">
                                                             Raised ${value.loanFundraisingInfo.fundedAmount} of ${value.loanAmount}
                                                         </Typography>

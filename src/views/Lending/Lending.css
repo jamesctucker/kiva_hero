@@ -3,6 +3,7 @@
     min-height: 120px;
     display: inline-flex;
     margin-top: .3em;
+    margin-bottom: 1em;
 }
 
 .card-image {
