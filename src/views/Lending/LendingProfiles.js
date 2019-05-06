@@ -23,9 +23,9 @@ import Divider from '@material-ui/core/Divider';
 
 
 const kivaLoans = gql`
-    query ($sortBy: LoanSearchSortByEnum, $limit: Int) {
+    query ($country: [String], $sortBy: LoanSearchSortByEnum, $limit: Int) {
   lend {
-    loans(filters: {status: fundraising}, sortBy: $sortBy, limit: $limit) {
+    loans(filters: {status: fundraising, country: $country}, sortBy: $sortBy, limit: $limit) {
       values {
         id
         plannedExpirationDate
@@ -44,9 +44,314 @@ const kivaLoans = gql`
   }
 }`;
 
-const country = [
+const countries = [
     {
-        name: h, value: j,
+        "name": "Albania",
+        "value": "AL"
+    },
+    {
+        "name": "Armenia",
+        "value": "AM"
+    },
+    {
+        "name": "Bangladesh",
+        "value": "BD"
+    },
+    {
+        "name": "Belize",
+        "value": "BZ"
+    },
+    {
+        "name": "Benin",
+        "value": "BJ"
+    },
+    {
+        "name": "Bhutan",
+        "value": "BT"
+    },
+    {
+        "name": "Bolivia",
+        "value": "BO"
+    },
+    {
+        "name": "Brazil",
+        "value": "BR"
+    },
+    {
+        "name": "Burkina Faso",
+        "value": "BF"
+    },
+    {
+        "name": "Cambodia",
+        "value": "KH"
+    },
+    {
+        "name": "Cameroon",
+        "value": "CM"
+    },
+    {
+        "name": "Canada",
+        "value": "CA"
+    },
+    {
+        "name": "Colombia",
+        "value": "CO"
+    },
+    {
+        "name": "Congo (DRC)",
+        "value": "CD"
+    },
+    {
+        "name": "Costa Rica",
+        "value": "CR"
+    },
+    {
+        "name": "Cote D'Ivoire",
+        "value": "CI"
+    },
+    {
+        "name": "Dominican Republic",
+        "value": "DO"
+    },
+    {
+        "name": "Ecuador",
+        "value": "EC"
+    },
+    {
+        "name": "Egypt",
+        "value": "EG"
+    },
+    {
+        "name": "El Salvador",
+        "value": "SV"
+    },
+    {
+        "name": "Fiji",
+        "value": "FJ"
+    },
+    {
+        "name": "Georgia",
+        "value": "GE"
+    },
+    {
+        "name": "Ghana",
+        "value": "GH"
+    },
+    {
+        "name": "Guam",
+        "value": "GU"
+    },
+    {
+        "name": "Guatemala",
+        "value": "GT"
+    },
+    {
+        "name": "Haiti",
+        "value": "HT"
+    },
+    {
+        "name": "Honduras",
+        "value": "HN"
+    },
+    {
+        "name": "India",
+        "value": "IN"
+    },
+    {
+        "name": "Indonesia",
+        "value": "ID"
+    },
+    {
+        "name": "Israel",
+        "value": "IL"
+    },
+    {
+        "name": "Jordan",
+        "value": "JO"
+    },
+    {
+        "name": "Kenya",
+        "value": "KE"
+    },
+    {
+        "name": "Kosovo",
+        "value": "XK"
+    },
+    {
+        "name": "Kyrgyzstan",
+        "value": "KG"
+    },
+    {
+        "name": "Lao",
+        "value": "LA"
+    },
+    {
+        "name": "Lebanon",
+        "value": "LB"
+    },
+    {
+        "name": "Lesotho",
+        "value": "LS"
+    },
+    {
+        "name": "Liberia",
+        "value": "LR"
+    },
+    {
+        "name": "Madagascar",
+        "value": "MG"
+    },
+    {
+        "name": "Malawi",
+        "value": "MW"
+    },
+    {
+        "name": "Mali",
+        "value": "ML"
+    },
+    {
+        "name": "Mexico",
+        "value": "MX"
+    },
+    {
+        "name": "Moldova",
+        "value": "MD"
+    },
+    {
+        "name": "Mozambique",
+        "value": "MZ"
+    },
+    {
+        "name": "Myanmar",
+        "value": "MM"
+    },
+    {
+        "name": "Namibia",
+        "value": "NA"
+    },
+    {
+        "name": "Nepal",
+        "value": "NP"
+    },
+    {
+        "name": "Nicaragua",
+        "value": "NI"
+    },
+    {
+        "name": "Nigeria",
+        "value": "NG"
+    },
+    {
+        "name": "Pakistan",
+        "value": "PK"
+    },
+    {
+        "name": "Palestine",
+        "value": "PS"
+    },
+    {
+        "name": "Panama",
+        "value": "PA"
+    },
+    {
+        "name": "Papua New Guinea",
+        "value": "PG"
+    },
+    {
+        "name": "Paraguay",
+        "value": "PY"
+    },
+    {
+        "name": "Peru",
+        "value": "PE"
+    },
+    {
+        "name": "Philippines",
+        "value": "PH"
+    },
+    {
+        "name": "Puerto Rico",
+        "value": "PR"
+    },
+    {
+        "name": "Rwanda",
+        "value": "RW"
+    },
+    {
+        "name": "Samoa",
+        "value": "WS"
+    },
+    {
+        "name": "Senegal",
+        "value": "SN"
+    },
+    {
+        "name": "Sierra Leone",
+        "value": "SL"
+    },
+    {
+        "name": "Solomon Islands",
+        "value": "SB"
+    },
+    {
+        "name": "South Africa",
+        "value": "ZA"
+    },
+    {
+        "name": "South Sudan",
+        "value": "SS"
+    },
+    {
+        "name": "Tajikistan",
+        "value": "TJ"
+    },
+    {
+        "name": "Tanzania",
+        "value": "TZ"
+    },
+    {
+        "name": "Thailand",
+        "value": "TH"
+    },
+    {
+        "name": "Timor-Leste",
+        "value": "TL"
+    },
+    {
+        "name": "Togo",
+        "value": "TG"
+    },
+    {
+        "name": "Tonga",
+        "value": "TO"
+    },
+    {
+        "name": "Turkey",
+        "value": "TR"
+    },
+    {
+        "name": "Uganda",
+        "value": "UG"
+    },
+    {
+        "name": "United States",
+        "value": "US"
+    },
+    {
+        "name": "Vietnam",
+        "value": "VN"
+    },
+    {
+        "name": "Virgin Islands",
+        "value": "VI"
+    },
+    {
+        "name": "Zambia",
+        "value": "ZM"
+    },
+    {
+        "name": "Zimbabwe",
+        "value": "ZW"
     }
 ];
 
@@ -69,6 +374,7 @@ class LendingProfiles extends Component {
         super(props)
         this.state = {
             sort: 'expiringSoon',
+            country: " ",
             limitResults: 10
         }
     }
@@ -80,9 +386,9 @@ class LendingProfiles extends Component {
 
 
     render() {
-        const { sort, limitResults } = this.state;
+        const { country, sort, limitResults } = this.state;
         return (
-            <Query query={kivaLoans} variables={{ sortBy: sort, limit: limitResults }}>
+            <Query query={kivaLoans} variables={{ country: country, sortBy: sort, limit: limitResults }}>
                 {({ data, loading, error }) => {
                     if (loading) return <div><p>Loading...</p></div>;
                     if (error) return <p>ERROR</p>;
@@ -125,6 +431,24 @@ class LendingProfiles extends Component {
                                             <MenuItem value={1}>1</MenuItem>
                                             <MenuItem value={10}>10</MenuItem>
                                             <MenuItem value={20}>20</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    <FormControl variant="outlined" className="form-control">
+                                        <InputLabel>
+                                            Country
+                                        </InputLabel>
+                                        <Select
+                                            className="dropdown"
+                                            value={this.state.country}
+                                            onChange={this.handleChange}
+                                            input={<OutlinedInput name="country" id="outlined-country-simple" />}
+                                        >
+                                            <MenuItem value={" "}>All</MenuItem>
+                                            {countries.map(country => (
+                                                <MenuItem key={country} value={country.value}>
+                                                    {country.name}
+                                                </MenuItem>
+                                            ))}
                                         </Select>
                                     </FormControl>
                                 </Paper>
