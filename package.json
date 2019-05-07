@@ -34,6 +34,7 @@
   },
   "scripts": {
     "start": "react-scripts build && node server/server.js",
+    "build": "react-scripts build",
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
     "test": "react-scripts test --env=jsdom",
