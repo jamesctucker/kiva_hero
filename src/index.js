@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './../src/views/App/App';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import './index.css';
 
 const client = new ApolloClient({
     uri: "https://api.kivaws.org/graphql"

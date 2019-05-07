@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import gql from "graphql-tag";
 import Countdown from 'react-countdown-now';
 import { Query } from "react-apollo";
+// import Nav from './../../components/Nav/Nav';
 import './Lending.css';
 
 import Button from '@material-ui/core/Button';
@@ -16,6 +17,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
+
+import Female_Clothier from './woman-clothier.jpg';
 
 
 
@@ -368,6 +371,7 @@ const renderer = ({ hours, minutes, seconds }) => {
 
 
 
+
 class LendingProfiles extends Component {
     constructor(props) {
         super(props)
@@ -399,8 +403,11 @@ class LendingProfiles extends Component {
                             container
                             spacing={24}
                         >
+                            <Grid item xs={12}>
+                                <img id="header-image" src={Female_Clothier} alt="header-image" />
+                            </Grid>
                             <Grid item xs={2}>
-                                <Paper align="center" className="paper-filter">
+                                <Paper align="center" className="paper-filter" elevation={20}>
                                     <FormControl variant="outlined" className="form-control">
                                         <InputLabel>
                                             Sort By
@@ -463,7 +470,7 @@ class LendingProfiles extends Component {
                                             id="main-paper"
                                             key={value.id}
                                             value={value}
-                                            elevation={3}
+                                            elevation={20}
                                         >
                                             <Grid className="card-grid" justify="center" container spacing={24}>
                                                 <Grid item lg={6}>

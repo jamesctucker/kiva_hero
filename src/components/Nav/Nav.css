@@ -3,28 +3,22 @@
     font-weight: 700;
     display: inline-block;
     color: #f2f2f2;
-    margin: 20px;
-    padding: 10px;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 .nav {
   background-color: #256F5C;
-  width: 100%;
-  height: 75px;
-  position: absolute;
+  background-size: 100% auto !important;
+  height: 4em;
   display: block;
-  left: 0;
-  right: 0;
-  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .nav-link {
-  float: right;
   color: #f2f2f2;
   background-color: #256F5C;
-  padding: 10px;
-  margin: 20px;
+  display: inline-block;
   font-size: 18px;
   font-family: 'Oxygen', sans-serif;
 
