@@ -4,7 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 import './App.css';
-import Nav from '/Users/jamestucker/Coding-Projects/React/kiva_hero/src/components/Nav/Nav.js'
+import Nav from './../../components/Nav/Nav.js'
 import About from './../About/About';
 import LendingProfiles from './../Lending/LendingProfiles';
 
