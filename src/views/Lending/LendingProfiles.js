@@ -398,9 +398,12 @@ class LendingProfiles extends Component {
 
                     return (
                         <div>
-                            <img id="header-image" src={Female_Clothier} alt="header-image" />
+                            <div class="container">
+                                <img id="header-image" src={Female_Clothier} alt="header-image" />
+                                <h1 class="centered">Save An Entrepreneur's Dream</h1>
 
-                            <Paper id="main-paper" elevation={10}>
+                            </div>
+                            <Paper id="main-background" elevation={10}>
 
                                 <Grid
                                     direction="row"
@@ -408,7 +411,7 @@ class LendingProfiles extends Component {
                                     container
                                     spacing={24}
                                 >
-                                    <Grid item xs={2}>
+                                    <Grid item xs={12} sm={4}>
                                         <Paper align="center" className="paper-filter" elevation={20}>
                                             <FormControl variant="outlined" className="form-control">
                                                 <InputLabel>
@@ -461,10 +464,7 @@ class LendingProfiles extends Component {
                                             </FormControl>
                                         </Paper>
                                     </Grid>
-                                    <Grid item xs={8}>
-                                        <Typography id="intro" gutterBottom variant="display1">
-                                            Fund an expiring loan, save an entrepreneur's dream.
-                                </Typography>
+                                    <Grid item xs={12} sm={8}>
                                         {
                                             data.lend.loans.values.map(value => (
                                                 <Paper
