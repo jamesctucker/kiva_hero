@@ -23,8 +23,6 @@ import Female_Clothier from './woman-clothier.jpg';
 
 
 
-
-
 const kivaLoans = gql`
     query ($country: [String], $sortBy: LoanSearchSortByEnum, $limit: Int) {
   lend {
@@ -382,6 +380,9 @@ class LendingProfiles extends Component {
         }
     }
 
+
+
+
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
@@ -398,9 +399,9 @@ class LendingProfiles extends Component {
 
                     return (
                         <div>
-                            <div class="container">
+                            <div className="container">
                                 <img id="header-image" src={Female_Clothier} alt="header-image" />
-                                <h1 class="centered">Rescue An Entrepreneur's Dream</h1>
+                                <h1 className="centered">Rescue An Entrepreneur's Dream</h1>
 
                             </div>
                             <Paper id="main-background" elevation={10}>
@@ -464,7 +465,7 @@ class LendingProfiles extends Component {
                                             </FormControl>
                                         </Paper>
                                     </Grid>
-                                    <Grid item xs={12} sm={8}>
+                                    <Grid item xs={12} sm={8}>}
                                         {
                                             data.lend.loans.values.map(value => (
                                                 <Paper
