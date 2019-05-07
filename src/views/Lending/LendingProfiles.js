@@ -400,7 +400,7 @@ class LendingProfiles extends Component {
                         <div>
                             <div class="container">
                                 <img id="header-image" src={Female_Clothier} alt="header-image" />
-                                <h1 class="centered">Save An Entrepreneur's Dream</h1>
+                                <h1 class="centered">Rescue An Entrepreneur's Dream</h1>
 
                             </div>
                             <Paper id="main-background" elevation={10}>
@@ -503,7 +503,7 @@ class LendingProfiles extends Component {
                                                         </Grid>
                                                         <Grid item lg={12}>
                                                             <Paper className="paper" elevation={2}>
-                                                                <Typography variant="h5">
+                                                                <Typography id="description-text" variant="h5">
                                                                     {value.name}'s Story
                                                         </Typography>
                                                                 <br />

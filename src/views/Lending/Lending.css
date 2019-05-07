@@ -179,7 +179,9 @@
 @media screen and (max-width: 800px) {
     #header-image {
         width: 100%;
+        object-fit: contain;
         z-index: -1;
+        height: 350px;
     }
     
     .container {
@@ -198,11 +200,18 @@
         letter-spacing: 2px;
         width: 75%
     }
+
+    #main-background {
+        margin-top: -3.5em;
+        position: relative;
+    }
     
     .card {
         position: initial;
         max-width: 500px;
         margin-top: 2em;
+        margin-right: 1em;
+        margin-left: 1em;
         display: inline-flex;
     }
     
@@ -215,10 +224,12 @@
     
     
     .paper-filter {
-        min-width: 300px;
+        max-width: 300px;
         max-height: 125px;
         padding: 1em;
         margin-top: 2em;
+        margin-right: 4em;
+        margin-left: 4em;
         display: block;
     }
 
@@ -239,6 +250,10 @@
         margin-top: 3em;
         font-size: 32px;
     }
+
+    #description-text {
+        font-size: 18px;
+    }
     
     #lend-btn {
         background-color: #4C688C;
@@ -257,7 +272,7 @@
     } */
     
     .paper {
-        padding: 10px;
+        padding: 20px;
         min-width: 250px;
 
     }
@@ -270,9 +285,6 @@
     /* .random-btn {
         margin-top: 7em;
     } */
-    
-    
-    
     
     #loan-amount {
         font-size: 14px;

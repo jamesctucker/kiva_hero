@@ -1,3 +1,5 @@
+@media screen and (min-width: 800px) {
+
 .nav-title {
     font-size: 24px;
     font-weight: 700;
@@ -38,3 +40,48 @@
   float: right;
 }
 
+}
+
+@media screen and (max-width: 800px) {
+
+  .nav-title {
+    font-size: 24px;
+    font-weight: 700;
+    display: inline-block;
+    color: #f2f2f2;
+}
+
+.nav {
+  background-color: #256F5C;
+  background-size: 100% auto !important;
+  height: 4em;
+  display: block;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+.nav-link {
+  color: #f2f2f2;
+  background-color: #256F5C;
+  display: inline-block;
+  font-size: 18px;
+  font-family: 'Oxygen', sans-serif;
+
+
+  /* these last two make the logout button in
+  the nav bar look like another link */
+  border:none;
+  cursor: pointer;
+  outline:0;
+}
+
+.nav-link:hover {
+  background-color: #256F5C;
+}
+
+.nav-right {
+  float: right;
+}
+
+}
