@@ -465,7 +465,7 @@ class LendingProfiles extends Component {
                                             </FormControl>
                                         </Paper>
                                     </Grid>
-                                    <Grid item xs={12} sm={8}>}
+                                    <Grid item xs={12} sm={8}>
                                         {
                                             data.lend.loans.values.map(value => (
                                                 <Paper
