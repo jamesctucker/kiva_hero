@@ -397,128 +397,132 @@ class LendingProfiles extends Component {
                     if (error) return <p>ERROR</p>;
 
                     return (
-                        <Grid
-                            direction="row"
-                            justify="space-evenly"
-                            container
-                            spacing={24}
-                        >
-                            <Grid item xs={12}>
-                                <img id="header-image" src={Female_Clothier} alt="header-image" />
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Paper align="center" className="paper-filter" elevation={20}>
-                                    <FormControl variant="outlined" className="form-control">
-                                        <InputLabel>
-                                            Sort By
-                                        </InputLabel>
-                                        <Select
-                                            className="dropdown"
-                                            value={this.state.sort}
-                                            onChange={this.handleChange}
-                                            input={<OutlinedInput name="sort" id="outlined-sort-simple" />}
-                                        >
-                                            <MenuItem value={"amountLeft"}>Amount Left</MenuItem>
-                                            <MenuItem value={"expiringSoon"}>Expiring Soonest</MenuItem>
-                                            <MenuItem value={"newest"}>Newest</MenuItem>
-                                            <MenuItem value={"random"}>Random</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    <FormControl variant="outlined" className="form-control">
-                                        <InputLabel>
-                                            Results
-                                        </InputLabel>
-                                        <Select
-                                            className="dropdown"
-                                            value={this.state.limitResults}
-                                            onChange={this.handleChange}
-                                            input={<OutlinedInput name="limitResults" id="outlined-limit-simple" />}
-                                        >
-                                            <MenuItem value={1}>1</MenuItem>
-                                            <MenuItem value={10}>10</MenuItem>
-                                            <MenuItem value={20}>20</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    <FormControl variant="outlined" className="form-control">
-                                        <InputLabel>
-                                            Country
-                                        </InputLabel>
-                                        <Select
-                                            className="dropdown"
-                                            value={this.state.country}
-                                            onChange={this.handleChange}
-                                            input={<OutlinedInput name="country" id="outlined-country-simple" />}
-                                        >
-                                            <MenuItem value={" "}>All</MenuItem>
-                                            {countries.map(country => (
-                                                <MenuItem key={country} value={country.value}>
-                                                    {country.name}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </FormControl>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={8}>
-                                <Typography id="intro" gutterBottom variant="display1">
-                                    Fund an expiring loan, save an entrepreneur's dream.
-                                </Typography>
-                                {
-                                    data.lend.loans.values.map(value => (
-                                        <Paper
-                                            className="card"
-                                            id="main-paper"
-                                            key={value.id}
-                                            value={value}
-                                            elevation={20}
-                                        >
-                                            <Grid className="card-grid" justify="center" container spacing={24}>
-                                                <Grid item lg={6}>
-                                                    <img
-                                                        className="card-image"
-                                                        src={value.image.url}
-                                                        alt={value.name}
-                                                    />
-                                                </Grid>
-                                                <Grid item lg={6}>
-                                                    <Paper className="loan-paper" elevation={2}>
-                                                        <Typography id="loan-name" gutterBottom variant="display1">
-                                                            {value.name}
-                                                        </Typography>
-                                                        <Divider />
-                                                        <div className="loan-amount-div">
-                                                            <span className="timer-header">Raised</span><span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span><span className="timer-header">of ${value.loanAmount}</span>
-                                                        </div>
-                                                        <Divider />
-                                                        <div className="loan-countdown-div">
-                                                            <Countdown date={value.plannedExpirationDate} renderer={renderer} />
-                                                        </div>
-                                                        <Divider />
-                                                        <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
-                                                            <Button variant="contained" id="lend-btn">Lend Now</Button>
-                                                        </Link>
-                                                    </Paper>
-                                                </Grid>
-                                                <Grid item lg={12}>
-                                                    <Paper className="paper" elevation={2}>
-                                                        <Typography variant="h5">
-                                                            {value.name}'s Story
-                                                        </Typography>
-                                                        <br />
-                                                        <Typography gutterBottom variant="body1">
-                                                            {value.description}
-                                                        </Typography>
-                                                    </Paper>
-                                                </Grid>
-                                            </Grid>
+                        <div>
+                            <img id="header-image" src={Female_Clothier} alt="header-image" />
 
+                            <Paper id="main-paper" elevation={10}>
+
+                                <Grid
+                                    direction="row"
+                                    justify="space-evenly"
+                                    container
+                                    spacing={24}
+                                >
+                                    <Grid item xs={2}>
+                                        <Paper align="center" className="paper-filter" elevation={20}>
+                                            <FormControl variant="outlined" className="form-control">
+                                                <InputLabel>
+                                                    Sort By
+                                        </InputLabel>
+                                                <Select
+                                                    className="dropdown"
+                                                    value={this.state.sort}
+                                                    onChange={this.handleChange}
+                                                    input={<OutlinedInput name="sort" id="outlined-sort-simple" />}
+                                                >
+                                                    <MenuItem value={"amountLeft"}>Amount Left</MenuItem>
+                                                    <MenuItem value={"expiringSoon"}>Expiring Soonest</MenuItem>
+                                                    <MenuItem value={"newest"}>Newest</MenuItem>
+                                                    <MenuItem value={"random"}>Random</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl variant="outlined" className="form-control">
+                                                <InputLabel>
+                                                    Results
+                                        </InputLabel>
+                                                <Select
+                                                    className="dropdown"
+                                                    value={this.state.limitResults}
+                                                    onChange={this.handleChange}
+                                                    input={<OutlinedInput name="limitResults" id="outlined-limit-simple" />}
+                                                >
+                                                    <MenuItem value={1}>1</MenuItem>
+                                                    <MenuItem value={10}>10</MenuItem>
+                                                    <MenuItem value={20}>20</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl variant="outlined" className="form-control">
+                                                <InputLabel>
+                                                    Country
+                                        </InputLabel>
+                                                <Select
+                                                    className="dropdown"
+                                                    value={this.state.country}
+                                                    onChange={this.handleChange}
+                                                    input={<OutlinedInput name="country" id="outlined-country-simple" />}
+                                                >
+                                                    <MenuItem value={" "}>All</MenuItem>
+                                                    {countries.map(country => (
+                                                        <MenuItem key={country} value={country.value}>
+                                                            {country.name}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
                                         </Paper>
-                                    ))}
-                            </Grid>
+                                    </Grid>
+                                    <Grid item xs={8}>
+                                        <Typography id="intro" gutterBottom variant="display1">
+                                            Fund an expiring loan, save an entrepreneur's dream.
+                                </Typography>
+                                        {
+                                            data.lend.loans.values.map(value => (
+                                                <Paper
+                                                    className="card"
+                                                    id="main-paper"
+                                                    key={value.id}
+                                                    value={value}
+                                                    elevation={20}
+                                                >
+                                                    <Grid className="card-grid" justify="center" container spacing={24}>
+                                                        <Grid item lg={6}>
+                                                            <img
+                                                                className="card-image"
+                                                                src={value.image.url}
+                                                                alt={value.name}
+                                                            />
+                                                        </Grid>
+                                                        <Grid item lg={6}>
+                                                            <Paper className="loan-paper" elevation={2}>
+                                                                <Typography id="loan-name" gutterBottom variant="display1">
+                                                                    {value.name}
+                                                                </Typography>
+                                                                <Divider />
+                                                                <div className="loan-amount-div">
+                                                                    <span className="timer-header">Raised</span><span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span><span className="timer-header">of ${value.loanAmount}</span>
+                                                                </div>
+                                                                <Divider />
+                                                                <div className="loan-countdown-div">
+                                                                    <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                                </div>
+                                                                <Divider />
+                                                                <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
+                                                                    <Button variant="contained" id="lend-btn">Lend Now</Button>
+                                                                </Link>
+                                                            </Paper>
+                                                        </Grid>
+                                                        <Grid item lg={12}>
+                                                            <Paper className="paper" elevation={2}>
+                                                                <Typography variant="h5">
+                                                                    {value.name}'s Story
+                                                        </Typography>
+                                                                <br />
+                                                                <Typography gutterBottom variant="body1">
+                                                                    {value.description}
+                                                                </Typography>
+                                                            </Paper>
+                                                        </Grid>
+                                                    </Grid>
 
-                        </Grid>
+                                                </Paper>
+                                            ))}
+                                    </Grid>
+                                </Grid>
+                            </Paper>
+                        </div>
                     );
                 }}
+
             </Query>
 
         );

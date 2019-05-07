@@ -2,6 +2,11 @@
     width: 100%;
 }
 
+#main-paper {
+    margin-right: 3em;
+    margin-left: 3em;
+}
+
 .card {
     max-width: 750px;
     min-height: 120px;
