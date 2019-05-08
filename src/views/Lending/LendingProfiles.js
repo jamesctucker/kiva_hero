@@ -20,7 +20,6 @@ import Divider from '@material-ui/core/Divider';
 
 import Female_Clothier from './woman-clothier.jpg';
 
-
 const kivaLoans = gql`
     query ($country: [String], $sortBy: LoanSearchSortByEnum, $limit: Int) {
   lend {
@@ -43,7 +42,6 @@ const kivaLoans = gql`
   }
 }`;
 
-
 const renderer = ({ hours, minutes, seconds }) => {
     return <div className="timer-div">
         <span className="timer-intro">Expires in</span>
@@ -52,7 +50,6 @@ const renderer = ({ hours, minutes, seconds }) => {
         <span className="timer-seconds">{seconds}</span><span className="timer-header">sec</span>
     </div>
 }
-
 
 class LendingProfiles extends Component {
     constructor(props) {
@@ -78,11 +75,9 @@ class LendingProfiles extends Component {
 
     }
 
-
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
-
 
     render() {
         const { country, sort, limitResults, countries } = this.state;
@@ -97,10 +92,8 @@ class LendingProfiles extends Component {
                             <div className="container">
                                 <img id="header-image" src={Female_Clothier} alt="header-image" />
                                 <h1 className="centered">Rescue An Entrepreneur's Dream</h1>
-
                             </div>
                             <Paper id="main-background" elevation={10}>
-
                                 <Grid
                                     direction="row"
                                     justify="space-evenly"
@@ -161,72 +154,65 @@ class LendingProfiles extends Component {
                                         </Paper>
                                     </Grid>
                                     <Grid item xs={12} sm={8}>
-                                        {
-                                            data.lend.loans.values.map(value => (
-                                                <Paper
-                                                    className="card"
-                                                    id="main-paper"
-                                                    key={value.id}
-                                                    value={value}
-                                                    elevation={20}
-                                                >
-                                                    <Grid className="card-grid" justify="center" container spacing={24}>
-                                                        <Grid item lg={6}>
-                                                            <img
-                                                                className="card-image"
-                                                                src={value.image.url}
-                                                                alt={value.name}
-                                                            />
-                                                        </Grid>
-                                                        <Grid item lg={6}>
-                                                            <Paper className="loan-paper" elevation={2}>
-                                                                <Typography id="loan-name" gutterBottom variant="display1">
-                                                                    {value.name}
-                                                                </Typography>
-                                                                <Divider />
-                                                                <div className="loan-amount-div">
-                                                                    <span className="timer-header">Raised</span><span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span><span className="timer-header">of ${value.loanAmount}</span>
-                                                                </div>
-                                                                <Divider />
-                                                                <div className="loan-countdown-div">
-                                                                    <Countdown date={value.plannedExpirationDate} renderer={renderer} />
-                                                                </div>
-                                                                <Divider />
-                                                                <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
-                                                                    <Button variant="contained" id="lend-btn">Lend Now</Button>
-                                                                </Link>
-                                                            </Paper>
-                                                        </Grid>
-                                                        <Grid item lg={12}>
-                                                            <Paper className="paper" elevation={2}>
-                                                                <Typography id="description-text" variant="h5">
-                                                                    {value.name}'s Story
-                                                        </Typography>
-                                                                <br />
-                                                                <Typography gutterBottom variant="body1">
-                                                                    {value.description}
-                                                                </Typography>
-                                                            </Paper>
-                                                        </Grid>
+                                        {data.lend.loans.values.map(value => (
+                                            <Paper
+                                                className="card"
+                                                id="main-paper"
+                                                key={value.id}
+                                                value={value}
+                                                elevation={20}
+                                            >
+                                                <Grid className="card-grid" justify="center" container spacing={24}>
+                                                    <Grid item lg={6}>
+                                                        <img
+                                                            className="card-image"
+                                                            src={value.image.url}
+                                                            alt={value.name}
+                                                        />
                                                     </Grid>
-
-                                                </Paper>
-                                            ))}
+                                                    <Grid item lg={6}>
+                                                        <Paper className="loan-paper" elevation={2}>
+                                                            <Typography id="loan-name" gutterBottom variant="display1">
+                                                                {value.name}
+                                                            </Typography>
+                                                            <Divider />
+                                                            <div className="loan-amount-div">
+                                                                <span className="timer-header">Raised</span><span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span><span className="timer-header">of ${value.loanAmount}</span>
+                                                            </div>
+                                                            <Divider />
+                                                            <div className="loan-countdown-div">
+                                                                <Countdown date={value.plannedExpirationDate} renderer={renderer} />
+                                                            </div>
+                                                            <Divider />
+                                                            <Link target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
+                                                                <Button variant="contained" id="lend-btn">Lend Now</Button>
+                                                            </Link>
+                                                        </Paper>
+                                                    </Grid>
+                                                    <Grid item lg={12}>
+                                                        <Paper className="paper" elevation={2}>
+                                                            <Typography id="description-text" variant="h5">
+                                                                {value.name}'s Story
+                                                        </Typography>
+                                                            <br />
+                                                            <Typography gutterBottom variant="body1">
+                                                                {value.description}
+                                                            </Typography>
+                                                        </Paper>
+                                                    </Grid>
+                                                </Grid>
+                                            </Paper>
+                                        ))}
                                     </Grid>
                                 </Grid>
                             </Paper>
                         </div>
                     );
                 }}
-
             </Query>
-
-        );
+        )
     }
-}
-
-
-
+};
 
 
 export default LendingProfiles;
