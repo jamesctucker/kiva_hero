@@ -6,6 +6,7 @@ import { Query } from "react-apollo";
 // import Nav from './../../components/Nav/Nav';
 import './Lending.css';
 
+// Material-UI components
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -20,6 +21,7 @@ import Divider from '@material-ui/core/Divider';
 
 import Female_Clothier from './woman-clothier.jpg';
 
+// graphQL query pulls data from kiva.org/graphql explorer; api url is sourced in index.js
 const kivaLoans = gql`
     query ($country: [String], $sortBy: LoanSearchSortByEnum, $limit: Int) {
   lend {
@@ -42,6 +44,7 @@ const kivaLoans = gql`
   }
 }`;
 
+// customizes countdown timer used in UI
 const renderer = ({ hours, minutes, seconds }) => {
     return <div className="timer-div">
         <span className="timer-intro">Expires in</span>
@@ -62,6 +65,7 @@ class LendingProfiles extends Component {
         }
     }
 
+    // brings in country data from personal api
     componentDidMount() {
         axios
             .get('https://api.jsonbin.io/b/5cd324de64d4fc359ead9996/2')
@@ -82,6 +86,7 @@ class LendingProfiles extends Component {
     render() {
         const { country, sort, limitResults, countries } = this.state;
         return (
+            // Apollo-GraphQL component that renders query data
             <Query query={kivaLoans} variables={{ country: country, sortBy: sort, limit: limitResults }}>
                 {({ data, loading, error }) => {
                     if (loading) return <div><p>Loading...</p></div>;
@@ -100,6 +105,7 @@ class LendingProfiles extends Component {
                                     container
                                     spacing={24}
                                 >
+                                    {/* LOAN FILTER STARTS HERE */}
                                     <Grid item xs={12} sm={4}>
                                         <Paper align="center" className="paper-filter" elevation={20}>
                                             <FormControl variant="outlined" className="form-control">
@@ -153,6 +159,8 @@ class LendingProfiles extends Component {
                                             </FormControl>
                                         </Paper>
                                     </Grid>
+                                    {/* LOAN FILTER ENDS HERE */}
+                                    {/* LOAN CARDS START HERE */}
                                     <Grid item xs={12} sm={8}>
                                         {data.lend.loans.values.map(value => (
                                             <Paper
@@ -203,6 +211,7 @@ class LendingProfiles extends Component {
                                                 </Grid>
                                             </Paper>
                                         ))}
+                                        {/* LOAN CARDS END HERE */}
                                     </Grid>
                                 </Grid>
                             </Paper>
