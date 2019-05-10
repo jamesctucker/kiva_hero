@@ -205,7 +205,7 @@ class LendingProfiles extends Component {
                                                         </Typography>
                                                             <br />
                                                             <Typography gutterBottom variant="body1">
-                                                                Hello {value.description.replace(/[<]br[^>]*[>]/gi, " ")}
+                                                                {value.description.replace(/[<]br[^>]*[>]/gi, " ")}
                                                             </Typography>
                                                         </Paper>
                                                     </Grid>
