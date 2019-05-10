@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import gql from "graphql-tag";
 import Countdown from 'react-countdown-now';
 import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 // import Nav from './../../components/Nav/Nav';
 import './Lending.css';
 
@@ -204,7 +205,7 @@ class LendingProfiles extends Component {
                                                         </Typography>
                                                             <br />
                                                             <Typography gutterBottom variant="body1">
-                                                                {value.description}
+                                                                Hello {value.description.replace(/[<]br[^>]*[>]/gi, " ")}
                                                             </Typography>
                                                         </Paper>
                                                     </Grid>
