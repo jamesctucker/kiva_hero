@@ -21,6 +21,8 @@ import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 
 import Female_Clothier from './woman-clothier.jpg';
+import Pensive_Clothier from './pensive.jpg';
+
 
 // graphQL query pulls data from kiva.org/graphql explorer; api url is sourced in index.js
 const kivaLoans = gql`
@@ -101,7 +103,7 @@ class LendingProfiles extends Component {
                     return (
                         <div>
                             <div className="container">
-                                <img id="header-image" src={Female_Clothier} alt="header-image" />
+                                <img id="header-image" src={Pensive_Clothier} alt="header-image" />
                                 <h1 className="centered">Rescue An Entrepreneur's Dream</h1>
                             </div>
                             <Paper id="main-background" elevation={10}>
