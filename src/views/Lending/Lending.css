@@ -77,6 +77,10 @@
     color: #4C688C;
 }
 
+#loan-country {
+    margin: 1em;
+}
+
 /* .grid-main {
     margin-left: relative;
 } */
@@ -209,6 +213,7 @@
     #main-background {
         margin-top: -3.5em;
         position: relative;
+        margin-bottom: 2em;
     }
     
     .card {
@@ -222,16 +227,14 @@
     }
     
     .card-image {
-        object-fit: cover;
+        object-fit: fill;
         max-height: 340px;
-        max-width: 200px;
-        box-shadow: 2px 3px 2px #888888;
     }
     
     
     .paper-filter {
         max-width: 300px;
-        max-height: 125px;
+        max-height: 150px;
         padding: 1em;
         margin-top: 2em;
         margin-right: 4em;
@@ -240,17 +243,17 @@
     }
 
     .dropdown {
-        min-width: 150px;
+        min-width: 175px;
         margin-left: 5px;
         margin-right: 5px;
         padding: 10px;
         margin: 10px;
-        height: 5px;
+        height: 10px;
     }
     
-    .card-grid {
-        padding: 25px;
-    }
+    /* .card-grid {
+        padding: 5px;
+    } */
     
     #intro {
         margin-top: 3em;
@@ -276,8 +279,12 @@
     
     #loan-name {
         margin: .5em;
-        font-size: 18px;
+        font-size: 24px;
         color: #4C688C;
+    }
+
+    #loan-country {
+        margin: 1em;
     }
 
     

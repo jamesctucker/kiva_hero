@@ -33,6 +33,11 @@ const kivaLoans = gql`
         image {
           url(customSize: "s900")
         }
+        geocode {
+          country {
+            name
+          }
+        }
         name
         loanFundraisingInfo {
           fundedAmount
@@ -172,7 +177,7 @@ class LendingProfiles extends Component {
                                                 elevation={20}
                                             >
                                                 <Grid className="card-grid" justify="center" container spacing={24}>
-                                                    <Grid item lg={6}>
+                                                    <Grid item xs={12} lg={6}>
                                                         <img
                                                             className="card-image"
                                                             src={value.image.url}
@@ -186,6 +191,10 @@ class LendingProfiles extends Component {
                                                                     {value.name}
                                                                 </Typography>
                                                             </Link>
+                                                            <Divider />
+                                                            <Typography id="loan-country" gutterBottom variant="p">
+                                                                {value.geocode.country.name}
+                                                            </Typography>
                                                             <Divider />
                                                             <div className="loan-amount-div">
                                                                 <span className="timer-header">Raised</span><span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span><span className="timer-header">of ${value.loanAmount}</span>
