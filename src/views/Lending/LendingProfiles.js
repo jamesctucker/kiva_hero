@@ -181,9 +181,11 @@ class LendingProfiles extends Component {
                                                     </Grid>
                                                     <Grid item lg={6}>
                                                         <Paper className="loan-paper" elevation={2}>
-                                                            <Typography id="loan-name" gutterBottom variant="display1">
-                                                                {value.name}
-                                                            </Typography>
+                                                            <Link id="loan-link" target='_blank' rel='noopener noreferrer' href={`https://www.kiva.org/lend/${value.id}`}>
+                                                                <Typography id="loan-name" gutterBottom variant="display1">
+                                                                    {value.name}
+                                                                </Typography>
+                                                            </Link>
                                                             <Divider />
                                                             <div className="loan-amount-div">
                                                                 <span className="timer-header">Raised</span><span id="loan-amount">${value.loanFundraisingInfo.fundedAmount}</span><span className="timer-header">of ${value.loanAmount}</span>
@@ -204,8 +206,10 @@ class LendingProfiles extends Component {
                                                                 {value.name}'s Story
                                                         </Typography>
                                                             <br />
-                                                            <Typography gutterBottom variant="body1">
-                                                                {value.description.replace(/[<]br[^>]*[>]/gi, " ")}
+                                                            <Divider />
+                                                            <br />
+                                                            <Typography id="description-text-2" gutterBottom variant="body1">
+                                                                {value.description.replace(/[<]br[^>]*[>]/gi, "\n")}
                                                             </Typography>
                                                         </Paper>
                                                     </Grid>

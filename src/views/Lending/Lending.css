@@ -74,6 +74,7 @@
 
 #loan-name {
     margin: .5em;
+    color: #4C688C;
 }
 
 /* .grid-main {
@@ -101,6 +102,10 @@
     padding: 10px;
     margin: 10px;
     height: 20px;
+}
+
+#description-text-2 {
+    white-space: pre-wrap;
 }
 
 #loan-amount {
@@ -209,7 +214,8 @@
     .card {
         position: initial;
         max-width: 500px;
-        margin-top: 2em;
+        margin-top: .5em;
+        margin-bottom: .5em;
         margin-right: 1em;
         margin-left: 1em;
         display: inline-flex;
@@ -253,19 +259,27 @@
 
     #description-text {
         font-size: 18px;
+        text-align: center;
+    }
+
+    #description-text-2 {
+        text-align: justify;
+        white-space: pre-wrap;
     }
     
     #lend-btn {
         background-color: #4C688C;
         color: white;
         margin: 1em;
-        height: 30px;
+        height: 35px;
     }
     
     #loan-name {
         margin: .5em;
         font-size: 18px;
+        color: #4C688C;
     }
+
     
     /* .grid-main {
         margin-left: relative;
@@ -274,12 +288,12 @@
     .paper {
         padding: 20px;
         min-width: 250px;
-
     }
     
     .loan-paper {
-        padding: 2px;
+        padding: 2px 0px;
         margin: 2px;
+        text-align: center;
     }
     
     
