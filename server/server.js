@@ -1,3 +1,5 @@
+// Considering moving GraphQL query to backend
+
 const express = require('express');
 
 const app = express();
