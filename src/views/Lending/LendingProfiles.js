@@ -20,7 +20,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 
-import Female_Clothier from './woman-clothier.jpg';
 import Pensive_Clothier from './pensive.jpg';
 
 
